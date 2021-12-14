@@ -119,7 +119,7 @@ ggsave("simple_trends.png")
 # also look at 2020
 lynden_plot_dat_shift <- lynden_plot_dat
 lynden_plot_dat_shift$week_cum <- lynden_plot_dat_shift$week_cum - 1
-weekly_dat_all <- full_join(weekly_waste_all, lynden_plot_dat, by = "week_cum") 
+weekly_dat_all <- full_join(weekly_waste_all, lynden_plot_dat_shift, by = "week_cum") 
 weekly_dat_all$rel_cases <- weekly_dat_all$weekly_cases/
   max(weekly_dat_all$weekly_cases, na.rm = T)  
 weekly_dat_all$rel_virus <- weekly_dat_all$virus_normed/
