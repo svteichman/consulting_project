@@ -92,7 +92,9 @@ ggplot(lynden_plot_dat, aes(x = week_cum, y = weekly_cases)) +
 ggsave("case_2020_2021.png")
 
 # plot time series for cases and wastewater on same axes
-weekly_dat <- full_join(weekly_waste, lynden_case_dat_21, by = "week") %>%
+lynden_case_dat_21_shift <- lynden_case_dat_21
+lynden_case_dat_21_shift$week <- lynden_case_dat_21_shift$week - 1
+weekly_dat <- full_join(weekly_waste, lynden_case_dat_21_shift, by = "week") %>%
   select(-date) %>%
   filter(week != 27)
 weekly_dat$rel_cases <- weekly_dat$weekly_cases/max(weekly_dat$weekly_cases, na.rm = T)  
@@ -115,6 +117,8 @@ trends_plot +
   ggtitle("Trends in Cases (red) and Virus (blue)")
 ggsave("simple_trends.png")
 # also look at 2020
+lynden_plot_dat_shift <- lynden_plot_dat
+lynden_plot_dat_shift$week_cum <- lynden_plot_dat_shift$week_cum - 1
 weekly_dat_all <- full_join(weekly_waste_all, lynden_plot_dat, by = "week_cum") 
 weekly_dat_all$rel_cases <- weekly_dat_all$weekly_cases/
   max(weekly_dat_all$weekly_cases, na.rm = T)  
