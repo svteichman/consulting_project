@@ -78,4 +78,4 @@ trends_plot +
   theme(axis.text.y = element_blank(),
         axis.ticks.y = element_blank()) + 
   ggtitle("Trends in Cases (red) and Virus (blue)")
-ggsave(file_path, "simple_trends.png")
+ggsave("simple_trends.png")
