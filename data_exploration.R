@@ -96,7 +96,8 @@ lynden_case_dat_21_shift <- lynden_case_dat_21
 lynden_case_dat_21_shift$week <- lynden_case_dat_21_shift$week - 1
 weekly_dat <- full_join(weekly_waste, lynden_case_dat_21_shift, by = "week") %>%
   select(-date) %>%
-  filter(week != 27)
+  filter(week != 27) %>%
+  filter(week != 0)
 weekly_dat$rel_cases <- weekly_dat$weekly_cases/max(weekly_dat$weekly_cases, na.rm = T)  
 weekly_dat$rel_virus <- weekly_dat$virus_normed/max(weekly_dat$virus_normed, na.rm = T)
 trends_plot <- ggplot(weekly_dat, aes(x = week, y = rel_cases)) + 
